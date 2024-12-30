@@ -12,7 +12,9 @@ use Illuminate\Support\Facades\Storage;
             {{ __("Update your account's profile information and email address.") }}
         </p>
     </header>
-
+    @if(session('status'))
+    <h1 class="alert alert-success">{{ session('status') }}</h1>
+    @endif 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">
         @csrf
     </form>
@@ -34,7 +36,8 @@ use Illuminate\Support\Facades\Storage;
         </div>
 
         @if ($user->avatar)
-        <img class="list-image-*" src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="User Avatar">
+        <img class="w-24 h-24 rounded-full object-cover border border-gray-300" src="{{ asset('storage/' . auth()->user()->avatar) }}" alt="User Avatar">
+
         @endif
 
 

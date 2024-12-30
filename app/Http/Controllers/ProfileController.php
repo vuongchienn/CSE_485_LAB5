@@ -34,7 +34,7 @@ class ProfileController extends Controller
         }
 
         if ($request->hasFile('avatar')) {
-            // Xóa avatar cũ nếu có
+    
             if ($request->user()->avatar) {
                 $oldAvatarPath = $request->user()->avatar;
                 if (Storage::disk('public')->exists($oldAvatarPath)) {
@@ -42,7 +42,7 @@ class ProfileController extends Controller
                 }
             }
 
-            // Lưu avatar mới
+          
             $avatarPath = $request->file('avatar')->store('avatars', 'public');
             $request->user()->avatar = $avatarPath;
         }
